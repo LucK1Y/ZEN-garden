@@ -17,8 +17,8 @@ env:
   CACHE_NUMBER: 0  # increase to reset cache manually
 
 permissions:
-  pull-requests: write
-
+  contents: write
+  pull-requests: read
 
 # Jobs
 jobs:
