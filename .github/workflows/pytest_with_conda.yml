@@ -16,9 +16,9 @@ on:
 env:
   CACHE_NUMBER: 0  # increase to reset cache manually
 
-permissions:
-  contents: write
-  pull-requests: read
+#permissions:
+#  contents: write
+#  pull-requests: read
 
 # Jobs
 jobs:
@@ -33,16 +33,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Generate new branch name
-        id: vars
-        run: |
-          BRANCH_NAME="version-bump-$(date +'%Y%m%d%H%M%S')"
-          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
-
-      - name: Create new branch
-        run: |
-          git checkout -b ${{ steps.vars.outputs.branch_name }}
 
       - name: Install bumpversion
         run: |
@@ -92,13 +82,7 @@ jobs:
       #   run: |
       #     git add bumpversion.cfg pyproject.toml
       #     git commit -m "Bump version"
-      #     git push origin ${{ steps.vars.outputs.branch_name }} --follow-tags
-
-      - name: Push all changes and tags
-        run: |
-          git push origin ${{ steps.vars.outputs.branch_name }} --follow-tags
-#          git push --tags  # Push all tags to the remote
-#          git push origin ${{ steps.vars.outputs.branch_name }}  # Push the branch
+      #     git push origin ${{ steps.vars.outputs.branch_name }} --follow-tag
 
       - name: Create Pull Request
         id: cpr
