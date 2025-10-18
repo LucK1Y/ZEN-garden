@@ -16,6 +16,9 @@ on:
 env:
   CACHE_NUMBER: 0  # increase to reset cache manually
 
+permissions:
+  pull-requests: write
+
 # Jobs
 jobs:
   check_skiptests:
